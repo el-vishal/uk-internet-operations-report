@@ -1,0 +1,361 @@
+---
+title: "Statistical Report for June - 2019 "
+author: "Vishal Sharma"
+date: "December 2018"
+output:
+  word_document: 
+    fig_caption: yes
+  html_document: default
+  pdf_document: 
+    keep_tex: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Introduction
+
+
+&nbsp;
+```{r}
+# Create the data for the chart.
+library(readxl)
+tot <- read_excel("Project data-2019.xlsx",sheet = 2, range = "C4:J15", col_names = FALSE)
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[3,1:8]
+plot(Years,Total_users,type="o", col="blue",  ylab = "Total users (in thousands)")
+title(main="Growth of internet users since 2011", col.main="red", font.main=4)
+legend("bottomright", legend=c("Actuals"),
+       col=c("blue"), lty=1:1, cex=0.8)
+```
+
+
+between the age-groups. 
+&nbsp;
+```{r}
+
+
+df <- read_excel("Project data-2019.xlsx",sheet = 2, range = "C9:J15", col_names = FALSE)
+
+par(xpd=T, mar=par()$mar+c(0,0,0,4))
+
+barplot(as.matrix(df), main="Internet users (2011-2018)", ylab= "Internet users",
+   beside=TRUE, col=heat.colors(7), names.arg=c("2011","2012","2013","2014","2015","2016","2017","2018"), ylim=c(0,10000))
+
+legend(x=70, y = 50, c("16-24","25-34","35-44","45-54","55-64","65-74","75+"), cex=0.6, 
+   bty="n", fill=heat.colors(7));
+
+# Restore default clipping rect
+par(mar=c(5, 4, 4, 2) + 0.1)
+
+
+```
+
+&nbsp;
+```{r}
+# Create the data for the chart.
+#tot <- read_excel("Project data-2019.xlsx",sheet = 2, range = "C4:J15", col_names = FALSE)
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[6,1:8]
+plot(Years,Total_users,type="b", col="blue", ylim=c(6500,7300), ylab = "Total users (in thousands)")
+title(main="Growth of internet users (Age 16-24)", col.main="red", font.main=4)
+legend("bottomright", legend=c("Trend line", "Actuals"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+#summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+
+```
+&nbsp;
+
+```{r}
+# Create the data for the chart.
+#tot <- read_excel("Project data-2019.xlsx",sheet = 2, range = "C4:J10", col_names = FALSE)
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[7,1:8]
+plot(Years,Total_users,type="b", col="blue", ylim=c(7500,9500), ylab = "Total users (in thousands)")
+title(main="Growth of internet users (Age 25-34)", col.main="red", font.main=4)
+legend("bottomright", legend=c("Trend line", "Actuals"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+#summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+
+```
+
+&nbsp;
+```{r}
+
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[8,1:8]
+plot(Years,Total_users,type="b", col="blue", ylim=c(7500,8500), ylab = "Total users (in thousands)")
+title(main="Growth of internet users (Age 35-44)", col.main="red", font.main=4)
+legend("bottomright", legend=c("Trend line", "Actuals"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+#summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+
+```
+
+&nbsp;
+```{r}
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[9,1:8]
+plot(Years,Total_users,type="b", col="blue", ylim=c(7000,9000), ylab = "Total users (in thousands)")
+title(main="Growth of internet users (Age 45-54)", col.main="red", font.main=4)
+legend("bottomright", legend=c("Trend line", "Actuals"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+#summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+```
+
+&nbsp;
+```{r}
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[10,1:8]
+plot(Years,Total_users,type="b", col="blue", ylim=c(5000,7500), ylab = "Total users (in thousands)")
+title(main="Growth of internet users (Age 55-64)", col.main="red", font.main=4)
+legend("bottomright", legend=c("Trend line", "Actuals"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+#summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+```
+
+&nbsp;
+```{r}
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[11,1:8]
+plot(Years,Total_users,type="b", col="blue", ylim=c(2500,5500), ylab = "Total users (in thousands)")
+title(main="Growth of internet users (Age 65-74)", col.main="red", font.main=4)
+legend("bottomright", legend=c("Trend line", "Actuals"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+#summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+```
+
+&nbsp;
+```{r}
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[12,1:8]
+plot(Years,Total_users,type="b", col="blue", ylim=c(500,2500), ylab = "Total users (in thousands)")
+title(main="Growth of internet users (Age 75+)", col.main="red", font.main=4)
+legend("bottomright", legend=c("Trend line", "Actuals"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+#summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+```
+&nbsp;
+```{r Anova3}
+#white = c(35546,    36430,    37585,    38601,    39498,    40526,    40885,    41825)
+#mixed = c(343,    401,    406,    471,    471,    490,    591,    510)
+indian = c(875,    906,    954,    1025,    1086,    1090,    1094,    1087)
+pakistani = c(475,    527,    593,    653,    684,    715,    759,    779)
+bangladeshi = c(171,    195,    213,    239,    252,    247,    316,    320)
+chinese = c(249,    220,    250,    226,    251,    267,    275,    303)
+#otherasian = c(423,    466,    465,    467,    464,    569,    562,    576)
+#black = c(940,    981,    1098,    1063,    1186,    1253,    1394,    1352)
+#otherethnic = c(616,    617,    655,    684,    746,    711,    838,    784)
+Combined_Groups = data.frame(cbind(indian, pakistani, bangladeshi, chinese))
+Stack_Groups = stack(Combined_Groups)
+Anovaresult = aov(values ~ ind, data = Stack_Groups)
+summary(Anovaresult)
+```
+
+&nbsp;
+
+
+```{r}
+male16 <- c(20039,	20564,	21242,	21814,	22229,	22812,	23200,	23606)
+f16 <- c(19645,	20200,	21001,	21643,	22442,	23105,	23542,	23954)
+combined_16 <- data.frame(cbind(male16,f16))
+stacked_16 <- stack(combined_16)
+stacked_16
+anova16 <- aov(values ~ ind, data = stacked_16)
+summary(anova16)
+```
+
+```{r Anova}
+#white = c(35546,    36430,    37585,    38601,    39498,    40526,    40885,    41825)
+mixed = c(343,    401,    406,    471,    471,    490,    591,    510)
+indian = c(875,    906,    954,    1025,    1086,    1090,    1094,    1087)
+pakistani = c(475,    527,    593,    653,    684,    715,    759,    779)
+bangladeshi = c(171,    195,    213,    239,    252,    247,    316,    320)
+chinese = c(249,    220,    250,    226,    251,    267,    275,    303)
+otherasian = c(423,    466,    465,    467,    464,    569,    562,    576)
+black = c(940,    981,    1098,    1063,    1186,    1253,    1394,    1352)
+otherethnic = c(616,    617,    655,    684,    746,    711,    838,    784)
+Combined_Groups = data.frame(cbind(mixed, indian, pakistani, bangladeshi, chinese, otherasian, black, otherethnic))
+Stack_Groups = stack(Combined_Groups)
+Anovaresult = aov(values ~ ind, data = Stack_Groups)
+summary(Anovaresult)
+
+```
+
+```{r}
+
+# Create the data for the chart.
+library(readxl)
+tot <- read_excel("Project data-2019.xlsx",sheet = 4, range = "D5:H29", col_names = FALSE)
+matrix = as.matrix(tot)
+Years = matrix[1,]
+EQD = matrix[18,1:5]
+NEQD = matrix[19,1:5]
+plot(Years,EQD,type="o", col="blue",  ylab = "Total users (in thousands)")
+#lines(Years,NEQD,type = "o", col="green")
+title(main="Equality Act Status(Age 55-64)", col.main="red", font.main=4)
+legend("bottomright", legend=c("Trend line", "Actuals"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+
+#Regression
+lmEQD = lm(Years~EQD) #Create the linear regression
+#summary(lmTotalGrowth) #Review the results
+#plot(Years, EQD, col = "blue") #Plot the results
+abline(lmEQD, col="red") #Add a regression line
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+
+```
+```{r}
+# Create the data for the chart.
+tot <- read_excel("Project data-2019.xlsx",sheet = 4, range = "D5:H29", col_names = FALSE)
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[18,1:5]
+NEQD = matrix[19,1:5]
+plot(Years,Total_users,type="b", col="blue", ylim=c(1000,2000), ylab = "Total users (in thousands)")
+#lines(Years,NEQD,type = "b", col="green")
+title(main="Equality Act Status(Age 55-64)", col.main="red", font.main=4)
+legend("bottomright", legend=c("Trend line", "Actuals"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+#summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+
+```
+
+
+
+
+```{r}
+mixed = c(343,    401,    406,    471,    471,    490,    591,    510)
+m = mean(mixed)
+indian = c(875,    906,    954,    1025,    1086,    1090,    1094,    1087)
+i = mean(indian)
+pakistani = c(475,    527,    593,    653,    684,    715,    759,    779)
+p = mean(pakistani)
+bangladeshi = c(171,    195,    213,    239,    252,    247,    316,    320)
+b = mean(bangladeshi)
+chinese = c(249,    220,    250,    226,    251,    267,    275,    303)
+c = mean(chinese)
+otherasian = c(423,    466,    465,    467,    464,    569,    562,    576)
+o = mean(otherasian)
+black = c(940,    981,    1098,    1063,    1186,    1253,    1394,    1352)
+bl = mean(black)
+otherethnic = c(616,    617,    655,    684,    746,    711,    838,    784)
+ot = mean(otherethnic)
+slices <- c(m,i,p,b,c,o,bl,ot)
+lbls <- c("Mixed/multiple ethnic", "Indian", "Pakistani", "Bangladeshi","Chinese","Other Asian Background","Black/African/Caribbean/Black British","Other Ethinc Group")
+pie(slices, col=rainbow(8), lables=NA, main="Ethnic Group (Non White) Internet users from 2011 to 2018")
+legend("topleft",lbls,cex=0.7,fill=rainbow(8))
+```
+```{r}
+white = c(35546,    36430,    37585,    38601,    39498,    40526,    40885,    41825)
+w = mean(white)
+mixed = c(343,    401,    406,    471,    471,    490,    591,    510)
+m = mean(mixed)
+indian = c(875,    906,    954,    1025,    1086,    1090,    1094,    1087)
+i = mean(indian)
+pakistani = c(475,    527,    593,    653,    684,    715,    759,    779)
+p = mean(pakistani)
+bangladeshi = c(171,    195,    213,    239,    252,    247,    316,    320)
+b = mean(bangladeshi)
+chinese = c(249,    220,    250,    226,    251,    267,    275,    303)
+c = mean(chinese)
+otherasian = c(423,    466,    465,    467,    464,    569,    562,    576)
+o = mean(otherasian)
+black = c(940,    981,    1098,    1063,    1186,    1253,    1394,    1352)
+bl = mean(black)
+otherethnic = c(616,    617,    655,    684,    746,    711,    838,    784)
+ot = mean(otherethnic)
+slices <- c(w,m,i,p,b,c,o,bl,ot)
+lbls <- c("White", "Mixed/multiple ethnic", "Indian", "Pakistani", "Bangladeshi","Chinese","Other Asian Background","Black/African/Caribbean/Black British","Other Ethinc Group")
+pie(slices, col=rainbow(8), lables=NA, main="Ethnic Group (Not White) Internet usage from 2011 to 2018")
+legend("topleft",lbls,cex=0.7,fill=rainbow(8))
+```
+
+
+```{r}
+dat <- read_excel("Project data-2019.xlsx",sheet = 5, range = "C8:J15", col_names = FALSE)
+
+## Set plot region (when set 'ylim' skip first row with headers)
+plot(
+  1, 1, 
+  xlim=c(1,ncol(dat)), ylim=range(dat[-1,], na.rm=T), 
+  xaxt='n', xlab='', ylab=''
+)
+axis(1, labels=c("Mixed", "Indian", "Pakistani", "Bangla","Chinese","OAsian","Black","OtherEth"), at=1:ncol(dat))
+#axis(2, labels = "Amount of internet users")
+
+for(i in 1:ncol(dat)) {
+  ## Get i-th column
+  p <- dat[,i]
+
+  ## Remove 0 values from column
+  p <- p[! p %in% 0]
+  ## Instead of 0 you can use any values
+  ## For example, you can remove 1, 2, 3
+  ##   p <- p[! p %in% c(1,2,3)]
+
+  ## Draw boxplot
+  boxplot(p, add=T, at=i)
+}
+```
+
+
+

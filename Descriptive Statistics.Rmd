@@ -1,0 +1,203 @@
+---
+title: "Business Statistics Mini-Project"
+author: "Vishal Sharma"
+date: "December 2018"
+output:
+  pdf_document: 
+    keep_tex: yes
+  html_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r, echo=FALSE}
+getwd()
+library(readxl)
+df <- read_excel("Project data-2019.xlsx",sheet = 2, range = "C9:J15", col_names = FALSE)
+
+par(xpd=T, mar=par()$mar+c(0,0,0,4))
+
+barplot(as.matrix(df), main="Internet users (2011-2018)", ylab= "Internet users",
+   beside=TRUE, col=heat.colors(7), names.arg=c("2011","2012","2013","2014","2015","2016","2017","2018"))
+
+legend(x=70, y = 50, c("16-24","25-34","35-44","45-54","55-64","65-74","75+"), cex=0.6, 
+   bty="n", fill=heat.colors(7));
+
+# Restore default clipping rect
+par(mar=c(5, 4, 4, 2) + 0.1)
+
+
+```
+```{r}
+# Create the data for the chart.
+tot <- read_excel("Project data-2019.xlsx",sheet = 2, range = "C4:J15", col_names = FALSE)
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[3,1:8]
+plot(Years,Total_users,type="o", col="blue")
+title(main="Growth of internet users since 2011", col.main="red", font.main=4)
+
+
+```
+Some linear property can be seen
+
+```{r}
+
+```
+Fits pretty good. Thus through the line equation, 
+```{r}
+#paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 38670')
+```
+for the year 2019
+
+```{r}
+y_2019 = 1157.8333 * 9 + (38670)
+print('Year 2019 prediction')
+print(y_2019)
+print('% profit')
+print('3.217 %')
+```
+Lets look on the age group to focus on:
+
+
+```{r}
+# Create the data for the chart.
+#tot <- read_excel("Project data-2019.xlsx",sheet = 2, range = "C4:J15", col_names = FALSE)
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[6,1:8]
+plot(Years,Total_users,type="o", col="blue", ylim=c(6500,7300))
+title(main="Growth of internet users (Age 16-24)", col.main="red", font.main=4)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+
+```
+It's decreasing, no point of focusing on them
+
+```{r}
+# Create the data for the chart.
+#tot <- read_excel("Project data-2019.xlsx",sheet = 2, range = "C4:J10", col_names = FALSE)
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[7,1:8]
+plot(Years,Total_users,type="o", col="blue", ylim=c(7500,9500))
+title(main="Growth of internet users (Age 25-34)", col.main="red", font.main=4)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+
+```
+Positive
+```{r}
+
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[8,1:8]
+plot(Years,Total_users,type="o", col="blue", ylim=c(7500,8500))
+title(main="Growth of internet users (Age 35-44)", col.main="red", font.main=4)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+
+```
+Positive
+```{r}
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[9,1:8]
+plot(Years,Total_users,type="o", col="blue", ylim=c(7000,9000))
+title(main="Growth of internet users (Age 45-54)", col.main="red", font.main=4)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+```
+Very positive
+
+```{r}
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[10,1:8]
+plot(Years,Total_users,type="o", col="blue", ylim=c(5000,7500))
+title(main="Growth of internet users (Age 55-64)", col.main="red", font.main=4)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+```
+Very positive
+
+```{r}
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[11,1:8]
+plot(Years,Total_users,type="o", col="blue", ylim=c(2500,5500))
+title(main="Growth of internet users (Age 65-74)", col.main="red", font.main=4)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+```
+Very positive
+```{r}
+matrix = as.matrix(tot)
+Years = matrix[1,]
+Total_users = matrix[12,1:8]
+plot(Years,Total_users,type="o", col="blue", ylim=c(500,2500))
+title(main="Growth of internet users (Age 75+)", col.main="red", font.main=4)
+
+#Regression
+lmTotalGrowth = lm(Total_users~Years) #Create the linear regression
+summary(lmTotalGrowth) #Review the results
+#plot(Years, Total_users, col = "blue") #Plot the results
+abline(lmTotalGrowth, col="red") #Add a regression line
+paste('y =', coef(lmTotalGrowth)[[2]], '* x', '+ 7145')
+```
+
+
+
